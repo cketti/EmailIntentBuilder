@@ -1,6 +1,7 @@
 # Email Intent Builder
 
 [![Build status](https://api.travis-ci.org/cketti/EmailIntentBuilder.svg)](https://travis-ci.org/cketti/EmailIntentBuilder)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.cketti.mailto/email-intent-builder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.cketti.mailto/email-intent-builder)
 
 An Android Library for the creation of SendTo Intents with mailto: URI
 
