@@ -33,7 +33,7 @@ import android.util.Patterns;
 
 /**
  * A helper to create email intents, i.e. {@link Intent#ACTION_SENDTO} with a {@code mailto:} URI.
- * <p/>
+ *
  * <p>Example usage:</p>
  * <pre>
  * <code>
@@ -47,7 +47,7 @@ import android.util.Patterns;
  * <p>This creates an intent containing the following {@code mailto:} URI:</p>
  * <pre>
  * <code>
- * mailto:alice@example.org?subject=Bug%20report%20for%20'My%20awesome%20app'&body=Something%20went%20wrong%20%3A(
+ * mailto:alice@example.org?subject=Bug%20report%20for%20'My%20awesome%20app'&amp;body=Something%20went%20wrong%20%3A(
  * </code>
  * </pre>
  *
