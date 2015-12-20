@@ -53,7 +53,7 @@ import android.util.Patterns;
  *
  * @see #from(Context)
  */
-public class EmailIntentBuilder {
+public final class EmailIntentBuilder {
     private final Context context;
     private final Set<String> to = new LinkedHashSet<>();
     private final Set<String> cc = new LinkedHashSet<>();
