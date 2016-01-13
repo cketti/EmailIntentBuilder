@@ -5,6 +5,8 @@
 
 An Android Library for the creation of [SendTo](https://developer.android.com/reference/android/content/Intent.html#ACTION_SENDTO) Intents with [mailto:](https://tools.ietf.org/html/rfc6068) URI
 
+Read the article [Android: Sending Email using Intents](https://medium.com/@cketti/android-sending-email-using-intents-3da63662c58f) if you want to learn what motivated the creation of this library.
+
 
 ## Usage
 
