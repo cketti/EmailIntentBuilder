@@ -74,6 +74,7 @@ public final class EmailIntentBuilder {
      *
      * @return An email intent builder
      */
+    @NonNull
     public static EmailIntentBuilder from(@NonNull Context context) {
         return new EmailIntentBuilder(context);
     }
@@ -86,6 +87,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder to(@NonNull String to) {
         checkEmail(to);
         this.to.add(to);
@@ -100,6 +102,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder to(@NonNull Collection<String> to) {
         checkNotNull(to);
         for (String email : to) {
@@ -118,6 +121,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder cc(@NonNull String cc) {
         checkEmail(cc);
         this.cc.add(cc);
@@ -132,6 +136,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder cc(@NonNull Collection<String> cc) {
         checkNotNull(cc);
         for (String email : cc) {
@@ -150,6 +155,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder bcc(@NonNull String bcc) {
         checkEmail(bcc);
         this.bcc.add(bcc);
@@ -164,6 +170,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder bcc(@NonNull Collection<String> bcc) {
         checkNotNull(bcc);
         for (String email : bcc) {
@@ -182,6 +189,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder subject(@NonNull String subject) {
         checkNotNull(subject);
         checkNoLineBreaks(subject);
@@ -197,6 +205,7 @@ public final class EmailIntentBuilder {
      *
      * @return This {@code EmailIntentBuilder} for method chaining
      */
+    @NonNull
     public EmailIntentBuilder body(@NonNull String body) {
         checkNotNull(body);
         this.body = fixLineBreaks(body);
@@ -232,11 +241,13 @@ public final class EmailIntentBuilder {
      *
      * @return the intent containing the provided information
      */
+    @NonNull
     public Intent build() {
         Uri mailtoUri = constructMailtoUri();
         return new Intent(Intent.ACTION_SENDTO, mailtoUri);
     }
 
+    @NonNull
     private Uri constructMailtoUri() {
         StringBuilder mailto = new StringBuilder(1024);
         mailto.append("mailto:");
@@ -304,6 +315,7 @@ public final class EmailIntentBuilder {
         }
     }
 
+    @NonNull
     private static <T> T checkNotNull(T object) {
         if (object == null) {
             throw new IllegalArgumentException("Argument must not be null");
@@ -312,6 +324,7 @@ public final class EmailIntentBuilder {
         return object;
     }
 
+    @NonNull
     @VisibleForTesting
     static String encodeRecipient(String recipient) {
         int index = recipient.lastIndexOf('@');
@@ -320,6 +333,7 @@ public final class EmailIntentBuilder {
         return Uri.encode(localPart) + "@" + Uri.encode(host);
     }
 
+    @NonNull
     @VisibleForTesting
     static String fixLineBreaks(String text) {
         return text.replaceAll("\r\n", "\n").replace('\r', '\n').replaceAll("\n", "\r\n");
