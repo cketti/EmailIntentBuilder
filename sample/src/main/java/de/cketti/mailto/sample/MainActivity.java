@@ -10,29 +10,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.cketti.mailto.EmailIntentBuilder;
 
 
 public class MainActivity extends AppCompatActivity {
-    @Bind(R.id.main_content)
+    @BindView(R.id.main_content)
     View mainContent;
 
-    @Bind(R.id.email_to)
+    @BindView(R.id.email_to)
     EditText emailTo;
 
-    @Bind(R.id.email_cc)
+    @BindView(R.id.email_cc)
     EditText emailCc;
 
-    @Bind(R.id.email_bcc)
+    @BindView(R.id.email_bcc)
     EditText emailBcc;
 
-    @Bind(R.id.email_subject)
+    @BindView(R.id.email_subject)
     EditText emailSubject;
 
-    @Bind(R.id.email_body)
+    @BindView(R.id.email_body)
     EditText emailBody;
 
 
