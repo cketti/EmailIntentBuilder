@@ -8,32 +8,19 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.cketti.mailto.EmailIntentBuilder;
 
 
 public class MainActivity extends AppCompatActivity {
-    @BindView(R.id.main_content)
-    View mainContent;
-
-    @BindView(R.id.email_to)
-    EditText emailTo;
-
-    @BindView(R.id.email_cc)
-    EditText emailCc;
-
-    @BindView(R.id.email_bcc)
-    EditText emailBcc;
-
-    @BindView(R.id.email_subject)
-    EditText emailSubject;
-
-    @BindView(R.id.email_body)
-    EditText emailBody;
+    private View mainContent;
+    private EditText emailTo;
+    private EditText emailCc;
+    private EditText emailBcc;
+    private EditText emailSubject;
+    private EditText emailBody;
 
 
     @Override
@@ -41,7 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
+        mainContent = findViewById(R.id.main_content);
+        emailTo = (EditText) findViewById(R.id.email_to);
+        emailCc = (EditText) findViewById(R.id.email_cc);
+        emailBcc = (EditText) findViewById(R.id.email_bcc);
+        emailSubject = (EditText) findViewById(R.id.email_subject);
+        emailBody = (EditText) findViewById(R.id.email_body);
+
+        findViewById(R.id.button_send_email).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail();
+            }
+        });
     }
 
     @Override
@@ -70,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.button_send_email)
     void sendEmail() {
         String to = emailTo.getText().toString();
         String cc = emailCc.getText().toString();
