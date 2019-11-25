@@ -34,25 +34,25 @@ public class EmailIntentBuilderTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @SuppressWarnings("ConstantConditions")
     @Test(expected = IllegalArgumentException.class)
-    public void from_withNullArgument_shouldThrow() throws Exception {
+    public void from_withNullArgument_shouldThrow() {
         EmailIntentBuilder.from(null);
     }
 
     @Test
-    public void build_shouldReturnIntentWithSendToAction() throws Exception {
+    public void build_shouldReturnIntentWithSendToAction() {
         Intent intent = EmailIntentBuilder.from(context).build();
 
         assertThat(intent).hasAction(Intent.ACTION_SENDTO);
     }
 
     @Test
-    public void build_withSingleToValue_shouldReturnExpectedResult() throws Exception {
+    public void build_withSingleToValue_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .to("john@example.org")
                 .build();
@@ -61,7 +61,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withListToValue_shouldReturnExpectedResult() throws Exception {
+    public void build_withListToValue_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .to(Arrays.asList("bob@example.org", "alice@example.org"))
                 .build();
@@ -70,7 +70,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withSingleCcValue_shouldReturnExpectedResult() throws Exception {
+    public void build_withSingleCcValue_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .cc("john@example.org")
                 .build();
@@ -79,7 +79,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withListCcValue_shouldReturnExpectedResult() throws Exception {
+    public void build_withListCcValue_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .cc(Arrays.asList("bob@example.org", "alice@example.org"))
                 .build();
@@ -88,7 +88,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withSingleBccValue_shouldReturnExpectedResult() throws Exception {
+    public void build_withSingleBccValue_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .bcc("john@example.org")
                 .build();
@@ -97,7 +97,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withListBccValue_shouldReturnExpectedResult() throws Exception {
+    public void build_withListBccValue_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .bcc(Arrays.asList("alice@example.org", "bob@example.org"))
                 .build();
@@ -106,7 +106,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withSubject_shouldReturnExpectedResult() throws Exception {
+    public void build_withSubject_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .subject("hi there")
                 .build();
@@ -115,7 +115,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withBodyContainingImproperLineBreak_shouldReturnFixedResult() throws Exception {
+    public void build_withBodyContainingImproperLineBreak_shouldReturnFixedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .body("this is\na test")
                 .build();
@@ -124,7 +124,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void build_withAllExtras_shouldReturnExpectedResult() throws Exception {
+    public void build_withAllExtras_shouldReturnExpectedResult() {
         Intent intent = EmailIntentBuilder.from(context)
                 .to(Arrays.asList("leia@example.org", "luke@example.org"))
                 .cc("obi.wan@example.org")
@@ -143,7 +143,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void start_fromActivity_shouldCreateIntentWithoutNewTaskFlag() throws Exception {
+    public void start_fromActivity_shouldCreateIntentWithoutNewTaskFlag() {
         Activity activity = mock(Activity.class);
 
         EmailIntentBuilder.from(activity)
@@ -155,7 +155,7 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void start_fromContext_shouldCreateIntentWithNewTaskFlag() throws Exception {
+    public void start_fromContext_shouldCreateIntentWithNewTaskFlag() {
         EmailIntentBuilder.from(context)
                 .to("john@example.org")
                 .start();
@@ -165,14 +165,14 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void start_withoutError_shouldReturnTrue() throws Exception {
+    public void start_withoutError_shouldReturnTrue() {
         boolean success = EmailIntentBuilder.from(context).start();
 
         assertThat(success).isTrue();
     }
 
     @Test
-    public void start_withActivityNotFoundException_shouldReturnFalse() throws Exception {
+    public void start_withActivityNotFoundException_shouldReturnFalse() {
         doThrow(new ActivityNotFoundException()).when(context).startActivity(any(Intent.class));
 
         boolean success = EmailIntentBuilder.from(context).start();
@@ -181,21 +181,21 @@ public class EmailIntentBuilderTest {
     }
 
     @Test
-    public void encodeRecipient_withComplicatedEmailOne_shouldReturnExpectedResult() throws Exception {
+    public void encodeRecipient_withComplicatedEmailOne_shouldReturnExpectedResult() {
         String encoded = EmailIntentBuilder.encodeRecipient("\"not@me\"@example.org");
 
         assertThat(encoded).isEqualTo("%22not%40me%22@example.org");
     }
 
     @Test
-    public void encodeRecipient_withComplicatedEmailTwo_shouldReturnExpectedResult() throws Exception {
+    public void encodeRecipient_withComplicatedEmailTwo_shouldReturnExpectedResult() {
         String encoded = EmailIntentBuilder.encodeRecipient("\"oh\\\\no\"@example.org");
 
         assertThat(encoded).isEqualTo("%22oh%5C%5Cno%22@example.org");
     }
 
     @Test
-    public void encodeRecipient_withComplicatedEmailThree_shouldReturnExpectedResult() throws Exception {
+    public void encodeRecipient_withComplicatedEmailThree_shouldReturnExpectedResult() {
         String encoded = EmailIntentBuilder.encodeRecipient("\"\\\\\\\"it's\\ ugly\\\\\\\"\"@example.org");
 
         assertThat(encoded).isEqualTo("%22%5C%5C%5C%22it's%5C%20ugly%5C%5C%5C%22%22@example.org");
@@ -203,70 +203,70 @@ public class EmailIntentBuilderTest {
 
     @SuppressWarnings("ConstantConditions")
     @Test(expected = IllegalArgumentException.class)
-    public void to_withNullArgument_shouldThrow() throws Exception {
+    public void to_withNullArgument_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .to((String) null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void to_withArgumentStartingWithAt_shouldThrow() throws Exception {
+    public void to_withArgumentStartingWithAt_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .to("@example.org");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void to_withArgumentEndingInAt_shouldThrow() throws Exception {
+    public void to_withArgumentEndingInAt_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .to("hi@");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void to_withArgumentNotContainingAt_shouldThrow() throws Exception {
+    public void to_withArgumentNotContainingAt_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .to("bob(at)example.org");
     }
 
     @SuppressWarnings("ConstantConditions")
     @Test(expected = IllegalArgumentException.class)
-    public void subject_withNullArgument_shouldThrow() throws Exception {
+    public void subject_withNullArgument_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .subject(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void subject_withArgumentContainingCarriageReturn_shouldThrow() throws Exception {
+    public void subject_withArgumentContainingCarriageReturn_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .subject("This is an important\rsubject");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void subject_withArgumentContainingLineFeed_shouldThrow() throws Exception {
+    public void subject_withArgumentContainingLineFeed_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .subject("Keep\nreading");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void subject_withArgumentContainingCrLf_shouldThrow() throws Exception {
+    public void subject_withArgumentContainingCrLf_shouldThrow() {
         EmailIntentBuilder.from(context)
                 .subject("One\r\nTwo");
     }
 
     @Test
-    public void fixLineBreaks_withArgumentContainingCr_shouldReturnExpectedResult() throws Exception {
+    public void fixLineBreaks_withArgumentContainingCr_shouldReturnExpectedResult() {
         String result = EmailIntentBuilder.fixLineBreaks("\r2nd");
 
         assertThat(result).isEqualTo("\r\n2nd");
     }
 
     @Test
-    public void fixLineBreaks_withArgumentContainingLf_shouldReturnExpectedResult() throws Exception {
+    public void fixLineBreaks_withArgumentContainingLf_shouldReturnExpectedResult() {
         String result = EmailIntentBuilder.fixLineBreaks("hi\nthere");
 
         assertThat(result).isEqualTo("hi\r\nthere");
     }
 
     @Test
-    public void fixLineBreaks_withArgumentContainingCrLf_shouldReturnExpectedResult() throws Exception {
+    public void fixLineBreaks_withArgumentContainingCrLf_shouldReturnExpectedResult() {
         String result = EmailIntentBuilder.fixLineBreaks("line one\r\nline two");
 
         assertThat(result).isEqualTo("line one\r\nline two");
