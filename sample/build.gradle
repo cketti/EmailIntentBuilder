@@ -7,10 +7,15 @@ android {
     defaultConfig {
         applicationId "de.cketti.mailto.sample"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 28
 
         versionCode 1
         versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 

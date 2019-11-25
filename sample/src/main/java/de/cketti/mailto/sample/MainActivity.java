@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,18 +28,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mainContent = findViewById(R.id.main_content);
-        emailTo = (EditText) findViewById(R.id.email_to);
-        emailCc = (EditText) findViewById(R.id.email_cc);
-        emailBcc = (EditText) findViewById(R.id.email_bcc);
-        emailSubject = (EditText) findViewById(R.id.email_subject);
-        emailBody = (EditText) findViewById(R.id.email_body);
+        emailTo = findViewById(R.id.email_to);
+        emailCc = findViewById(R.id.email_cc);
+        emailBcc = findViewById(R.id.email_bcc);
+        emailSubject = findViewById(R.id.email_subject);
+        emailBody = findViewById(R.id.email_body);
 
-        findViewById(R.id.button_send_email).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendEmail();
-            }
-        });
+        findViewById(R.id.button_send_email).setOnClickListener(v -> sendEmail());
     }
 
     @Override
