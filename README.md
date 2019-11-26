@@ -48,7 +48,7 @@ EmailIntentBuilder.from(activity)
 
 **Version 2.0.0 (2019-11-26)**
 - Use `org.jetbrains:annotations` for nullability annotations
-- No function changes
+- No functional changes
 
 **Version 1.0.0 (2015-12-19)**
 - Initial release
