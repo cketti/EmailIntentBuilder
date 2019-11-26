@@ -7,6 +7,15 @@ An Android Library for the creation of [SendTo](https://developer.android.com/re
 Read the article [Android: Sending Email using Intents](https://medium.com/@cketti/android-sending-email-using-intents-3da63662c58f) if you want to learn what motivated the creation of this library.
 
 
+## Include the library
+
+Add this to your `dependencies` block in `build.gradle`:
+
+```groovy
+implementation 'de.cketti.mailto:email-intent-builder:2.0.0'
+```
+
+
 ## Usage
 
 Creating a simple email intent is as easy as this:
@@ -32,15 +41,6 @@ EmailIntentBuilder.from(activity)
         .subject("Message from an app")
         .body("Some text here")
         .start();
-```
-
-
-## Include the library
-
-Add this to your `dependencies` block in `build.gradle`:
-
-```groovy
-compile 'de.cketti.mailto:email-intent-builder:1.0.0'
 ```
 
 
