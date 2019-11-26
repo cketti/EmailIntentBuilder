@@ -44,9 +44,18 @@ EmailIntentBuilder.from(activity)
 ```
 
 
+## Changelog
+
+**Version 2.0.0 (2019-11-26)**
+- Use `org.jetbrains:annotations` for nullability annotations
+- No function changes
+
+**Version 1.0.0 (2015-12-19)**
+- Initial release
+
 ## License
 
-    Copyright 2015 cketti
+    Copyright 2015-2019 cketti
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
